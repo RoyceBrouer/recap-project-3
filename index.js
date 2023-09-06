@@ -41,9 +41,7 @@ export async function fetchCharacters(page) {
 
     maxPage = data.info.pages;
     pagination.textContent = `${page} / ${maxPage}`;
-if (searchQuery){
-  page=1;
-}
+
       cardContainer.innerHTML = '';
       data.results.forEach((character) => {
         const card = createCharacterCard(character);

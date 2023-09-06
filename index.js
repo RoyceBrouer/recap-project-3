@@ -45,25 +45,20 @@ export async function fetchCharacters(page) {
 
     maxPage = data.info.pages;
     pagination.textContent = `${page} / ${maxPage}`;
-      cardContainer.innerHTML = '';
-      data.results.forEach((character) => {
-        const card = createCharacterCard(character);
-        cardContainer.append(card);
-        
-      });
-    
-     }catch(error) {
-     console.error("aw jeez Rick. I don't know.", error);
-
-     }
-    }
+    cardContainer.innerHTML = "";
+    data.results.forEach((character) => {
+      const card = createCharacterCard(character);
+      cardContainer.append(card);
+    });
+  } catch (error) {
+    console.error("aw jeez Rick. I don't know.", error);
+  }
+}
 
 fetchCharacters(page);
-
-
-
 
 searchBar.addEventListener("submit", (event) => {
   event.preventDefault();
   searchQuery = event.target.elements.query.value;
-}); 
+  return searchQuery;
+});

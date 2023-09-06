@@ -1,5 +1,13 @@
 import { createCharacterCard } from "./components/card/card.js";
 // States
+import {
+  createButton,
+  handlePreviousButton,
+} from "./components/nav-button/nav-button.js";
+import {
+  handleNextButton,
+  handlePreviousButton,
+} from "./components/nav-button/nav-button.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -8,33 +16,42 @@ const searchBarContainer = document.querySelector(
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
-const nextButton = document.querySelector('[data-js="button-next"]');
+// const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 
 let maxPage = 1;
 let page = 1;
 let searchQuery = "";
 
-nextButton.addEventListener("click", () => {
-  if (page < maxPage) {
-    page++;
-    fetchCharacters(page, (searchQuery = ""));
-    console.log("Wow Rick! i can see all the Characters.");
-  } else {
-    alert("Stop Morty! 'burb' You can't go there, it's the end of the Page");
-  }
-});
+const previousButton = createButton("previous", handlePreviousButton());
+navigation.append(previousButton);
 
-prevButton.addEventListener("click", () => {
-  if (page > 1) {
-    page--;
-    fetchCharacters(page, (searchQuery = ""));
-  } else {
-    alert(
-      "Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica"
-    );
-  }
-});
+const nextButton = createButton("next", handleNextButton());
+navigation.append(nextButton);
+
+// nextButton.onclick = () => handleNextButton();
+// previousButton.onclick = () => handlePreviousButton();
+
+// nextButton.addEventListener("click", () => {
+//   if (page < maxPage) {
+//     page++;
+//     fetchCharacters(page, (searchQuery = ""));
+//     console.log("Wow Rick! i can see all the Characters.");
+//   } else {
+//     alert("Stop Morty! 'burb' You can't go there, it's the end of the Page");
+//   }
+// });
+
+// prevButton.addEventListener("click", () => {
+//   if (page > 1) {
+//     page--;
+//     fetchCharacters(page, (searchQuery = ""));
+//   } else {
+//     alert(
+//       "Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica"
+//     );
+//   }
+// });
 
 export async function fetchCharacters(page, searchQuery) {
   try {

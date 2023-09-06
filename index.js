@@ -14,17 +14,29 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const maxPage = 1;
 const page = 1;
 const searchQuery = "";
+nextButton.addEventListener('click', () => {
+  if (page < maxPage) {
+    page++;
+    fetchCharacters(page);
+  }
+});
+
+prevButton.addEventListener('click', () => {
+  if (page > 1) {
+    page--;
+    fetchCharacters(page);
+  }
+});
 
 async function fetchCharacters() {
-  const RickUrl = "https://rickandmortyapi.com/";
   try {
-    const response = await fetch("https://rickandmortyapi.com/")
+    const response = await fetch("https://rickandmortyapi.com/?page=<pageIndex>")
     if (response.ok){
       const data = await response.json();
       cardContainer.innerHTML = '';
       data.slice(0, 20).forEach((character) => {
         const card = createCharacterCard(character);
-        cardContainer.appendChild(card);
+        cardContainer.append(card);
       });
     } else {
       console.log("Oh jeez...");
@@ -34,3 +46,4 @@ async function fetchCharacters() {
     }
 }
 fetchCharacters();
+

@@ -25,6 +25,8 @@ prevButton.addEventListener('click', () => {
   if (page > 1) {
     page--;
     fetchCharacters(page);
+  } else {
+    alert("Jeez Rick. You cant't go back any further. Let's go home Rick. I miss Jessica");
   }
 });
 

@@ -1,12 +1,16 @@
 const cardcontainer = document.querySelector('[data-js="card-container"]');
 
 export function createCharacterCard(character) {
-  const characterCard = document.createElement('li'); //document?
+
+  const characterCard = document.createElement("li"); //document?
+
   characterCard.classList.add("card");
   characterCard.innerHTML = `<div class="card__image-container">
   <img
     class="card__image"
-    src="${character.image}"
+    
+    src=${character.image}
+
     alt=""
   />
   <div class="card__image-gradient"></div>

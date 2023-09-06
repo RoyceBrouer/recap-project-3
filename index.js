@@ -16,11 +16,16 @@ const page = 1;
 const searchQuery = "";
 
 async function fetchCharacters() {
+  const RickUrl = "https://rickandmortyapi.com/";
   try {
     const response = await fetch("https://rickandmortyapi.com/")
     if (response.ok){
       const data = await response.json();
-      return data;
+      cardContainer.innerHTML = '';
+      data.slice(0, 20).forEach((character) => {
+        const card = createCharacterCard(character);
+        cardContainer.appendChild(card);
+      });
     } else {
       console.log("Oh jeez...");
     } 
@@ -28,3 +33,4 @@ async function fetchCharacters() {
      console.error("oh jeez Rick. I don't know.");
     }
 }
+fetchCharacters();

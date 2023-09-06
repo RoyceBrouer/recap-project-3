@@ -14,10 +14,14 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const maxPage = 1;
 const page = 1;
 const searchQuery = "";
+
 nextButton.addEventListener('click', () => {
   if (page < maxPage) {
     page++;
     fetchCharacters(page);
+    console.log("Wow Rick! i can see all the Characters.")
+  } else {
+    alert("Stop Morty! 'burb' You can't go there, it's the end of the Page")
   }
 });
 
@@ -26,13 +30,13 @@ prevButton.addEventListener('click', () => {
     page--;
     fetchCharacters(page);
   } else {
-    alert("Jeez Rick. You cant't go back any further. Let's go home Rick. I miss Jessica");
+    alert("Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica");
   }
 });
 
-async function fetchCharacters() {
+export async function fetchCharacters() {
   try {
-    const response = await fetch("https://rickandmortyapi.com/?page=<pageIndex>")
+    const response = await fetch("https://rickandmortyapi.com/")
     if (response.ok){
       const data = await response.json();
       cardContainer.innerHTML = '';

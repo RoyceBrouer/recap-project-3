@@ -45,8 +45,6 @@ export async function fetchCharacters(page) {
 
     maxPage = data.info.pages;
     pagination.textContent = `${page} / ${maxPage}`;
-<<<<<<< HEAD
-
       cardContainer.innerHTML = '';
       data.results.forEach((character) => {
         const card = createCharacterCard(character);
@@ -56,21 +54,12 @@ export async function fetchCharacters(page) {
     
      }catch(error) {
      console.error("aw jeez Rick. I don't know.", error);
-=======
-    if (searchQuery) {
-      page = 1;
->>>>>>> refs/remotes/origin/main
-    }
-    cardContainer.innerHTML = "";
-    data.results.forEach((character) => {
-      const card = createCharacterCard(character);
-      cardContainer.append(card);
-    });
-  } catch (error) {
-    console.error("aw jeez Rick. I don't know.", error);
-  }
-}
+
+     }
 fetchCharacters(page);
+}
+
+
 
 searchBar.addEventListener("submit", (event) => {
   event.preventDefault();

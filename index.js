@@ -36,7 +36,7 @@ prevButton.addEventListener('click', () => {
 
 export async function fetchCharacters() {
   try {
-    const response = await fetch("https://rickandmortyapi.com/?page=<pageIndex>")
+    const response = await fetch("https://rickandmortyapi.com/")
     if (response.ok){
       const data = await response.json();
       cardContainer.innerHTML = '';

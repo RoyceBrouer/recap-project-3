@@ -1,5 +1,5 @@
 
-export function createPagination(numb="1 / 1", onSubmit) {
+export function createPagination(numb, onSubmit) {
     const span = document.createElement("span");
     span.textContent = numb;
     span.addEventListener("submit",onSubmit)

@@ -15,16 +15,17 @@ let maxPage = 1;
 let page = 1;
 let searchQuery = "";
 
-const previousButton = createButton("previous", handlePreviousButton);
+const previousButton = createButton("prev", handlePreviousButton);
 navigation.append(previousButton);
+previousButton.classList.add("button");
 
-
-const span = createPagination( );
+const span = createPagination("1 / 42", );
 navigation.append(span);
+span.classList.add("navigation__pagination");
 
 const nextButton = createButton("next", handleNextButton);
 navigation.append(nextButton);
-
+nextButton.classList.add("button");
 
 
 function handleNextButton() {

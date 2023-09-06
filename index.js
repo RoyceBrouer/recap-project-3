@@ -56,12 +56,14 @@ export async function fetchCharacters(page) {
      console.error("aw jeez Rick. I don't know.", error);
 
      }
+    }
+
 fetchCharacters(page);
-}
+
 
 
 
 searchBar.addEventListener("submit", (event) => {
   event.preventDefault();
   searchQuery = event.target.elements.query.value;
-});
+}); 

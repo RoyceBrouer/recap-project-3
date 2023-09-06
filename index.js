@@ -18,7 +18,7 @@ let searchQuery = "";
 nextButton.addEventListener("click", () => {
   if (page < maxPage) {
     page++;
-    fetchCharacters(page);
+    fetchCharacters(page, (searchQuery = ""));
     console.log("Wow Rick! i can see all the Characters.");
   } else {
     alert("Stop Morty! 'burb' You can't go there, it's the end of the Page");
@@ -28,7 +28,7 @@ nextButton.addEventListener("click", () => {
 prevButton.addEventListener("click", () => {
   if (page > 1) {
     page--;
-    fetchCharacters(page);
+    fetchCharacters(page, (searchQuery = ""));
   } else {
     alert(
       "Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica"
@@ -36,7 +36,7 @@ prevButton.addEventListener("click", () => {
   }
 });
 
-export async function fetchCharacters(page) {
+export async function fetchCharacters(page, searchQuery) {
   try {
     const response = await fetch(
       `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`
@@ -55,10 +55,10 @@ export async function fetchCharacters(page) {
   }
 }
 
-fetchCharacters(page);
+fetchCharacters(page, (searchQuery = ""));
 
 searchBar.addEventListener("submit", (event) => {
   event.preventDefault();
   searchQuery = event.target.elements.query.value;
-  return searchQuery;
+  fetchCharacters(page, searchQuery);
 });

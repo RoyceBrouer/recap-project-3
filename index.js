@@ -13,7 +13,7 @@ import {
 
 let maxPage = 1;
 let page = 1;
-let searchQuery = handleSearchBar;
+let searchQuery = "";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const navigation = document.querySelector('[data-js="navigation"]');
@@ -62,6 +62,7 @@ export async function fetchCharacters(page, maxPage, searchQuery = "") {
       cardContainer.append(card);
     });
   } catch (error) {
+    alert("aw jeez Rick. I don't know this buddy!");
     console.error("aw jeez Rick. I don't know.", error);
   }
 }

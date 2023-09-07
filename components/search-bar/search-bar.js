@@ -31,5 +31,4 @@ export function handleSearchBar(e) {
   let searchQuery = e.target.elements.query.value;
   console.log(searchQuery);
   fetchCharacters(1, "", searchQuery);
-  return searchQuery;
 }

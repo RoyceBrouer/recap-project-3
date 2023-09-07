@@ -13,12 +13,16 @@ import {
 
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
+
+const searchBarContainer = document.querySelector('[data-js="search-bar-container"]');
+const searchBar = document.querySelector('[data-js="search-bar"]');
+
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 // const searchBar = document.querySelector('[data-js="search-bar"]');
+
 const navigation = document.querySelector('[data-js="navigation"]');
-const pagination = document.querySelector('[data-js="pagination"]');
 
 let maxPage = 1;
 let page = 1;
@@ -29,15 +33,18 @@ const previousButton = createButton("previous", handlePreviousButton);
 
 navigation.append(previousButton);
 previousButton.classList.add("button");
+previousButton.setAttribute('data-js',"button-prev");
 
-const span = createPagination("1 / 42", );
+const span = createPagination("1 / 1",  );
 navigation.append(span);
 span.classList.add("navigation__pagination");
+span.setAttribute('data-js','pagination');
+const pagination = document.querySelector('[data-js="pagination"]');
 
 const nextButton = createButton("next", handleNextButton);
 navigation.append(nextButton);
 nextButton.classList.add("button");
-
+nextButton.setAttribute('data-js',"button-next");
 
 function createSearchBar(onSubmit) {
   const searchBar = document.createElement("form");
@@ -124,3 +131,12 @@ export async function fetchCharacters(page, searchQuery="") {
 }
 
 fetchCharacters(page, (searchQuery = ""));
+
+
+searchBar.addEventListener("submit", (event) => {
+  event.preventDefault();
+  searchQuery = event.target.elements.query.value;
+  fetchCharacters(page, searchQuery);
+});
+
+

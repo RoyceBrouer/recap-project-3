@@ -26,8 +26,18 @@ main {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
 }
 
 .title {
   padding: 10px 0;
+}
+
+.spaceship {
+  width:240px;
+  height: 200px;
+}
+.aside {
+  grid-column: auto;
 }

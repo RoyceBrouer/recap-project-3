@@ -75,3 +75,4 @@ searchBar.addEventListener("submit", (event) => {
   searchQuery = event.target.elements.query.value;
   fetchCharacters(page, searchQuery);
 });
+

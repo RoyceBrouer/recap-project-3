@@ -1,10 +1,11 @@
 import { fetchCharacters } from "../../index.js";
+import { handlePreviousButton } from "../nav-button/nav-button.js";
 
 export const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
 
-export function createSearchBar(onSubmit) {
+export function createSearchBar() {
   const searchBar = document.createElement("form");
   searchBar.innerHTML = `<input
     name="query"
@@ -23,8 +24,6 @@ export function createSearchBar(onSubmit) {
   searchBar.classList.add("search-bar");
   searchBar.setAttribute("action", "");
 
-  searchBar.addEventListener("submit", onSubmit);
-
   return searchBar;
 }
 
@@ -32,6 +31,10 @@ export function handleSearchBar(e) {
   e.preventDefault();
   let searchQuery = e.target.elements.query.value;
   console.log(searchQuery);
-  fetchCharacters(page, searchQuery);
+  fetchCharacters("1", "", searchQuery);
+  nextButton.onclick = () => handleNextButton(1, "", searchQuery);
+  previousButton.onclick = () => handlePreviousButton(page, searchQuery);
+  // nextButton.onclick = handleNextButton;
+  // previousButton.onclick = handlePreviousButton;
   return searchQuery;
 }

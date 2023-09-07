@@ -22,8 +22,9 @@ let searchQuery = handleSearchBar;
 const cardContainer = document.querySelector('[data-js="card-container"]');
 // const pagination = document.querySelector('[data-js="pagination"]');
 const navigation = document.querySelector('[data-js="navigation"]');
-const searchBar = createSearchBar(handleSearchBar);
+const searchBar = createSearchBar();
 searchBarContainer.append(searchBar);
+searchBar.addEventListener("submit", handleSearchBar);
 
 const previousButton = createButton("prev", () =>
   handlePreviousButton(page, searchQuery)
@@ -46,6 +47,7 @@ const nextButton = createButton(
 navigation.append(nextButton);
 nextButton.classList.add("button");
 
+//whole fetchCharacters function with callbacks
 export async function fetchCharacters(page, maxPage, searchQuery = "") {
   try {
     console.log(page);

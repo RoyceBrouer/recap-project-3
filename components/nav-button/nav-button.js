@@ -21,7 +21,7 @@ export function handleNextButton(page, maxPage) {
 export function handlePreviousButton(page) {
   if (page > 1) {
     page--;
-    fetchCharacters(page, "");
+    fetchCharacters(page);
   } else {
     alert(
       "Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica"

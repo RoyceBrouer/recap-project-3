@@ -1,9 +1,4 @@
-// import { page, maxPage, searchQuery } from "../nav-button/nav-button.js";
-
-export const cardContainer = document.querySelector(
-  '[data-js="card-container"]'
-);
-const pagination = document.querySelector('[data-js="pagination"]');
+// import { createPagination } from "../nav-pagination/nav-pagination.js";
 
 export function createCharacterCard(character) {
   const characterCard = document.createElement("li"); //document?
@@ -31,23 +26,4 @@ export function createCharacterCard(character) {
   </dl>
 </div>`;
   return characterCard;
-}
-
-export async function fetchCharacters(page, searchQuery = "", span) {
-  try {
-    const response = await fetch(
-      `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`
-    );
-    const data = await response.json();
-
-    let maxPage = data.info.pages;
-    span.textContent = `${page} / ${maxPage}`;
-    cardContainer.innerHTML = "";
-    data.results.forEach((character) => {
-      const card = createCharacterCard(character);
-      cardContainer.append(card);
-    });
-  } catch (error) {
-    console.error("aw jeez Rick. I don't know.", error);
-  }
 }

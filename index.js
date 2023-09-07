@@ -4,12 +4,9 @@ import { createPagination } from "./components/nav-pagination/nav-pagination.js"
 
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-const searchBarContainer = document.querySelector(
-  '[data-js="search-bar-container"]'
-);
+const searchBarContainer = document.querySelector('[data-js="search-bar-container"]');
 const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
-const pagination = document.querySelector('[data-js="pagination"]');
 
 let maxPage = 1;
 let page = 1;
@@ -18,15 +15,18 @@ let searchQuery = "";
 const previousButton = createButton("prev", handlePreviousButton);
 navigation.append(previousButton);
 previousButton.classList.add("button");
+previousButton.setAttribute('data-js',"button-prev");
 
-const span = createPagination("1 / 42", );
+const span = createPagination("1 / 1",  );
 navigation.append(span);
 span.classList.add("navigation__pagination");
+span.setAttribute('data-js','pagination');
+const pagination = document.querySelector('[data-js="pagination"]');
 
 const nextButton = createButton("next", handleNextButton);
 navigation.append(nextButton);
 nextButton.classList.add("button");
-
+nextButton.setAttribute('data-js',"button-next");
 
 function handleNextButton() {
   if (page < maxPage) {

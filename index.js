@@ -1,27 +1,18 @@
 import { createCharacterCard } from "./components/card/card.js";
-
 import {createButton} from "./components/nav-button/nav-button.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
 
-
-// States
+/*
 import {
   createButton,
   handlePreviousButton,
   handleNextButton,
 } from "./components/nav-button/nav-button.js";
-
+*/
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 
 const searchBarContainer = document.querySelector('[data-js="search-bar-container"]');
-const searchBar = document.querySelector('[data-js="search-bar"]');
-
-const searchBarContainer = document.querySelector(
-  '[data-js="search-bar-container"]'
-);
-// const searchBar = document.querySelector('[data-js="search-bar"]');
-
 const navigation = document.querySelector('[data-js="navigation"]');
 
 let maxPage = 1;
@@ -29,8 +20,6 @@ let page = 1;
 let searchQuery = "";
 
 const previousButton = createButton("prev", handlePreviousButton);
-const previousButton = createButton("previous", handlePreviousButton);
-
 navigation.append(previousButton);
 previousButton.classList.add("button");
 previousButton.setAttribute('data-js',"button-prev");

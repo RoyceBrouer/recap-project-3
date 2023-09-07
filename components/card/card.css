@@ -6,9 +6,15 @@
 }
 
 .card {
-  width: 90%; 
-  background-color: var(--color-secondary);
-  margin-bottom: 5px;
+  width: 90%;
+  background-color: var(--color-third);
+  margin-bottom: 30px;
+  border-radius: 5%;
+  box-shadow: var(--color-third), 30px, 30px;
+}
+
+.card__image {
+  margin-top: 10%;
 }
 
 .card__info {

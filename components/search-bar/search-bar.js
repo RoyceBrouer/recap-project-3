@@ -1,5 +1,4 @@
 import { fetchCharacters } from "../../index.js";
-import { handlePreviousButton } from "../nav-button/nav-button.js";
 
 export const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -31,10 +30,6 @@ export function handleSearchBar(e) {
   e.preventDefault();
   let searchQuery = e.target.elements.query.value;
   console.log(searchQuery);
-  fetchCharacters("1", "", searchQuery);
-  nextButton.onclick = () => handleNextButton(1, "", searchQuery);
-  previousButton.onclick = () => handlePreviousButton(page, searchQuery);
-  // nextButton.onclick = handleNextButton;
-  // previousButton.onclick = handlePreviousButton;
+  fetchCharacters(1, "", searchQuery);
   return searchQuery;
 }

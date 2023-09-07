@@ -1,7 +1,5 @@
-// import { createPagination } from "../nav-pagination/nav-pagination.js";
-
 export function createCharacterCard(character) {
-  const characterCard = document.createElement("li"); //document?
+  const characterCard = document.createElement("li");
 
   characterCard.classList.add("card");
   characterCard.innerHTML = `<div class="card__image-container">

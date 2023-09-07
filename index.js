@@ -1,7 +1,4 @@
-import {
-  createCharacterCard,
-  // cardContainer,
-} from "./components/card/card.js";
+import { createCharacterCard } from "./components/card/card.js";
 import {
   createButton,
   handleNextButton,
@@ -9,7 +6,6 @@ import {
 } from "./components/nav-button/nav-button.js";
 import { createPagination } from "./components/nav-pagination/nav-pagination.js";
 import { searchBarContainer } from "./components/search-bar/search-bar.js";
-// import { navigation } from "./components/nav-pagination/nav-pagination.js";
 import {
   createSearchBar,
   handleSearchBar,
@@ -20,7 +16,6 @@ let page = 1;
 let searchQuery = handleSearchBar;
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
-// const pagination = document.querySelector('[data-js="pagination"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const searchBar = createSearchBar();
 searchBarContainer.append(searchBar);
@@ -58,8 +53,9 @@ export async function fetchCharacters(page, maxPage, searchQuery = "") {
     console.log(data);
     maxPage = await data.info.pages;
     span.textContent = `${page} / ${maxPage}`;
-    nextButton.onclick = () => handleNextButton(page, maxPage);
-    previousButton.onclick = () => handlePreviousButton(page, searchQuery);
+    nextButton.onclick = () => handleNextButton(page, maxPage, searchQuery);
+    previousButton.onclick = () =>
+      handlePreviousButton(page, maxPage, searchQuery);
     cardContainer.innerHTML = "";
     data.results.forEach((character) => {
       const card = createCharacterCard(character);
@@ -73,6 +69,7 @@ export async function fetchCharacters(page, maxPage, searchQuery = "") {
 await fetchCharacters(page, maxPage, (searchQuery = ""));
 console.log(maxPage);
 
+//css extra stuff
 const aside = document.querySelector(".aside");
 
 window.addEventListener("scroll", () => {

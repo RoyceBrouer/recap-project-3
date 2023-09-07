@@ -1,6 +1,5 @@
 .search-bar-container {
   width: 965px;
-  
 }
 
 .search-bar {
@@ -8,12 +7,16 @@
   background-color: var(--color-secondary);
   display: grid;
   grid-template-columns: 1fr 24px;
+  font-family: 'Get Schwifty';
 }
 
 .search-bar__input {
   background-color: transparent;
   border: none;
   color: var(--color-primary);
+  font-family: 'Get Schwifty';
+  word-spacing: 10px;
+  letter-spacing: 5px;
 }
 
 .search-bar__button {

@@ -1,7 +1,8 @@
+export const navigation = document.querySelector('[data-js="navigation"]');
 
-export function createPagination(numb, onClick) {
-    const span = document.createElement("span");
-    span.textContent = numb;
-    span.addEventListener("submit",onClick);
-    return span;
-  }
+export function createPagination(page, maxPage) {
+  const span = document.createElement("span");
+  // span.textContent = `${page}/${maxPage}`;
+  // // span.addEventListener("submit", onClick);
+  return span;
+}

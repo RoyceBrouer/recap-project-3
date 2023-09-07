@@ -38,6 +38,10 @@ main {
   width:240px;
   height: 200px;
 }
+
 .aside {
   grid-column: auto;
+  position: sticky;
+  top: 0; 
+  transition: top 1s; 
 }

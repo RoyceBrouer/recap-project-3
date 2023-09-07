@@ -129,3 +129,16 @@ searchBar.addEventListener("submit", (event) => {
 });
 
 
+
+const aside = document.querySelector('.aside');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const triggerPoint = 150;
+
+  if (scrollY > triggerPoint) {
+    aside.style.top = `${scrollY - triggerPoint}px`;
+  } else {
+    aside.style.top = '0';
+  }
+});

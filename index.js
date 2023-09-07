@@ -71,14 +71,29 @@ await fetchCharacters(page, maxPage, (searchQuery = ""));
 console.log(maxPage);
 
 //css extra stuff
-const aside = document.querySelector(".aside");
+// i created a better spaceship it now also goes up
+const aside = document.querySelector('.aside');
 
-window.addEventListener("scroll", () => {
+let lastScrollTop = 3;
+let isScrollingDown = true; 
+
+window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
-  const triggerPoint = 500;
-  if (scrollY > triggerPoint) {
-    aside.style.top = `${scrollY - triggerPoint}px`;
-  } else {
-    aside.style.top = "100";
+  const scrollSpeed = scrollY - lastScrollTop;
+
+ 
+  if ((scrollSpeed > 1 && !isScrollingDown) || (scrollSpeed < 1 && isScrollingDown)) {
+    isScrollingDown = !isScrollingDown;
   }
+
+  const currentTop = parseInt(aside.style.top || '0', 10);
+
+  if (isScrollingDown || (scrollY === 1 && currentTop < 1)) {
+    aside.style.top = `${currentTop + scrollSpeed}px`;
+  } else if (!isScrollingDown) {
+    aside.style.top = `${Math.min(currentTop - scrollSpeed, 1)}px`;
+  }
+
+  lastScrollTop = scrollY;
 });
+

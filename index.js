@@ -1,114 +1,61 @@
 import { createCharacterCard } from "./components/card/card.js";
-import {createButton} from "./components/nav-button/nav-button.js";
-import { createPagination } from "./components/nav-pagination/nav-pagination.js";
-
-/*
 import {
   createButton,
-  handlePreviousButton,
   handleNextButton,
+  handlePreviousButton,
 } from "./components/nav-button/nav-button.js";
-*/
-
-const cardContainer = document.querySelector('[data-js="card-container"]');
-
-const searchBarContainer = document.querySelector('[data-js="search-bar-container"]');
-const navigation = document.querySelector('[data-js="navigation"]');
+import { createPagination } from "./components/nav-pagination/nav-pagination.js";
+import { searchBarContainer } from "./components/search-bar/search-bar.js";
+import {
+  createSearchBar,
+  handleSearchBar,
+} from "./components/search-bar/search-bar.js";
 
 let maxPage = 1;
 let page = 1;
-let searchQuery = "";
+let searchQuery = handleSearchBar;
 
-const previousButton = createButton("prev", handlePreviousButton);
+const cardContainer = document.querySelector('[data-js="card-container"]');
+const navigation = document.querySelector('[data-js="navigation"]');
+const searchBar = createSearchBar();
+searchBarContainer.append(searchBar);
+searchBar.addEventListener("submit", handleSearchBar);
+
+const previousButton = createButton("prev", () =>
+  handlePreviousButton(page, searchQuery)
+);
 navigation.append(previousButton);
 previousButton.classList.add("button");
-previousButton.setAttribute('data-js',"button-prev");
 
-const span = createPagination("1 / 1",  );
+const span = createPagination(page, maxPage);
 navigation.append(span);
 span.classList.add("navigation__pagination");
-span.setAttribute('data-js','pagination');
-const pagination = document.querySelector('[data-js="pagination"]');
 
-const nextButton = createButton("next", handleNextButton);
+const nextButton = createButton(
+  "next",
+  handleNextButton,
+  page,
+  maxPage,
+  searchQuery
+);
+
 navigation.append(nextButton);
 nextButton.classList.add("button");
-nextButton.setAttribute('data-js',"button-next");
 
-function createSearchBar(onSubmit) {
-  const searchBar = document.createElement("form");
-  searchBar.innerHTML = `<input
-  name="query"
-  class="search-bar__input"
-  type="text"
-  placeholder="search characters"
-  aria-label="character name"
-/>
-<button class="search-bar__button" aria-label="search for character">
-<img
-  class="search-bar__icon"
-  src="assets/magnifying-glass.png"
-  alt=""
-/>
-</button>`;
-  searchBar.classList.add("search-bar");
-  searchBar.setAttribute("action", "");
-
-  searchBar.addEventListener("submit", onSubmit);
-
-  return searchBar;
-}
-
-export function handleSearchBar(e) {
-  e.preventDefault();
-  searchQuery = e.target.elements.query.value;
-  console.log(searchQuery);
-  fetchCharacters(page, searchQuery);
-}
-
-const searchBar = createSearchBar(handleSearchBar);
-searchBarContainer.append(searchBar);
-
-// searchBar.addEventListener("submit", (event) => {
-//   event.preventDefault();
-//   searchQuery = event.target.elements.query.value;
-//   fetchCharacters(page, searchQuery);
-// });
-
-// nextButton.onclick = () => handleNextButton();
-// previousButton.onclick = () => handlePreviousButton();
-
-
-function handleNextButton() {
-  if (page < maxPage) {
-    page++;
-    fetchCharacters(page, (searchQuery = ""));
-    console.log("Wow Rick! i can see all the Characters.");
-  } else {
-    alert("Stop Morty! 'burb' You can't go there, it's the end of the Page");
-  }
-}
-
- function handlePreviousButton() {
-  if (page > 1) {
-    page--;
-    fetchCharacters(page, (searchQuery = ""));
-  } else {
-    alert(
-      "Aw Jeez Rick. You you you cant't go back any further. Let's go home Rick. I miss Jessica"
-    );
-  }
-}
-
-export async function fetchCharacters(page, searchQuery="") {
+//whole fetchCharacters function with callbacks
+export async function fetchCharacters(page, maxPage, searchQuery = "") {
   try {
+    console.log(page);
     const response = await fetch(
       `https://rickandmortyapi.com/api/character/?page=${page}&name=${searchQuery}`
     );
     const data = await response.json();
-
-    maxPage = data.info.pages;
-    pagination.textContent = `${page} / ${maxPage}`;
+    console.log(data);
+    maxPage = await data.info.pages;
+    span.textContent = `${page} / ${maxPage}`;
+    nextButton.onclick = () => handleNextButton(page, maxPage, searchQuery);
+    previousButton.onclick = () =>
+      handlePreviousButton(page, maxPage, searchQuery);
     cardContainer.innerHTML = "";
     data.results.forEach((character) => {
       const card = createCharacterCard(character);
@@ -119,25 +66,18 @@ export async function fetchCharacters(page, searchQuery="") {
   }
 }
 
-fetchCharacters(page, (searchQuery = ""));
+await fetchCharacters(page, maxPage, (searchQuery = ""));
+console.log(maxPage);
 
+//css extra stuff
+const aside = document.querySelector(".aside");
 
-searchBar.addEventListener("submit", (event) => {
-  event.preventDefault();
-  searchQuery = event.target.elements.query.value;
-  fetchCharacters(page, searchQuery);
-});
-
-
-
-const aside = document.querySelector('.aside');
-
-window.addEventListener('scroll', () => {
+window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
   const triggerPoint = 500;
   if (scrollY > triggerPoint) {
     aside.style.top = `${scrollY - triggerPoint}px`;
   } else {
-    aside.style.top = '100';
+    aside.style.top = "100";
   }
 });

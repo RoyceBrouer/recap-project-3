@@ -1,3 +1,5 @@
+import { fetchCharacters } from "../../index.js";
+
 export const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
@@ -28,7 +30,8 @@ export function createSearchBar(onSubmit) {
 
 export function handleSearchBar(e) {
   e.preventDefault();
-  searchQuery = e.target.elements.query.value;
+  let searchQuery = e.target.elements.query.value;
   console.log(searchQuery);
   fetchCharacters(page, searchQuery);
+  return searchQuery;
 }

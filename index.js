@@ -17,7 +17,7 @@ import {
 
 let maxPage = 1;
 let page = 1;
-let searchQuery = "";
+let searchQuery = handleSearchBar;
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 // const pagination = document.querySelector('[data-js="pagination"]');

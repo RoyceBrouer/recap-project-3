@@ -8,7 +8,6 @@
 .card {
   width: 90%;
   background: rgb(173, 205, 43, 0.7);
-  /* opacity: 0.8; */
   margin-bottom: 30px;
   border-radius: 5%;
   box-shadow: var(--color-third), 30px, 30px;

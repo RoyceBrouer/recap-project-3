@@ -1,5 +1,7 @@
 .button {
   border: none;
+  border-radius: 12px;
+  background: rgb(173, 205, 43, 0.7);
 }
 
 .button:hover {

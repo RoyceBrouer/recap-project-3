@@ -1,20 +1,22 @@
 .search-bar-container {
   width: 965px;
+  margin-top: 4%;
 }
 
 .search-bar {
   padding: 10px 20px;
-  background-color: var(--color-secondary);
+  background: rgb(173, 205, 43, 0.7);
   display: grid;
   grid-template-columns: 1fr 24px;
-  font-family: 'Get Schwifty';
+  font-family: "Get Schwifty";
+  border-radius: 12px;
 }
 
 .search-bar__input {
   background-color: transparent;
   border: none;
   color: var(--color-primary);
-  font-family: 'Get Schwifty';
+  font-family: "Get Schwifty";
   word-spacing: 10px;
   letter-spacing: 5px;
 }

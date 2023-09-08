@@ -21,6 +21,11 @@
   letter-spacing: 5px;
 }
 
+::placeholder {
+  color: rgb(1, 5, 232);
+  opacity: 1;
+}
+
 .search-bar__button {
   border: none;
   background-color: transparent;
